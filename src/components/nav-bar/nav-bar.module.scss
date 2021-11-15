@@ -1,0 +1,36 @@
+.navbar{
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 10;
+    
+    &_links{
+        display: flex;
+        justify-content: space-around;
+        padding: .75rem;
+        width: 80%;
+        max-width: 400px;
+        margin: auto;
+        background-color: var(--var-light-grey-blue);
+        border-radius: 0 0 5px 5px;
+        
+        &_active{
+            color: var(--var-light-blue-text) !important;
+            border-bottom: 2px solid rgb(67, 106, 143);               
+        }
+
+        a {
+            color: var(--var-white-text);
+            text-decoration: none;
+            padding: .5rem 0;
+            line-height: .7rem;
+            transition: color .3s ease-in-out;
+        }
+
+        h1{
+            font-weight: 400;
+            font-size: 22px;
+            margin: 0;
+        }
+     }
+}

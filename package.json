@@ -10,9 +10,12 @@
     "@types/node": "^12.0.0",
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
+    "node-sass": "^6.0.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-router-dom": "^6.0.2",
     "react-scripts": "4.0.3",
+    "toastr": "^2.1.4",
     "typescript": "^4.1.2",
     "web-vitals": "^1.0.1"
   },
@@ -20,13 +23,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
+    "compile-test": "tsc --noEmit",
+    "prettier": "prettier --write src/**/*.{ts,tsx}",
+    "lint-fix-windows": "echo AUTO FIXING LINT: && eslint src/**/*.{ts,tsx} --fix"
   },
   "browserslist": {
     "production": [
@@ -39,5 +38,15 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@types/toastr": "^2.1.39",
+    "@typescript-eslint/eslint-plugin": "^5.3.1",
+    "@typescript-eslint/parser": "^5.3.1",
+    "eslint-config-airbnb": "^19.0.0",
+    "eslint-config-airbnb-typescript": "^15.0.0",
+    "eslint-config-prettier": "^8.3.0",
+    "history": "^5.1.0",
+    "prettier": "^2.4.1"
   }
 }

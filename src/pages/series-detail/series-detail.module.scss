@@ -1,0 +1,91 @@
+.seriesdetail{
+    margin: 0;
+    padding: 0;
+    padding-bottom: 2rem;
+
+    &_content {
+        display: flex;
+        flex-direction: column;
+        padding: 10px 20px;
+
+        &_header{
+            display: flex;
+        
+            &_info {
+                display: flex;
+                justify-content: space-between;
+                padding: 8px;
+
+                .rating{
+                    border: 1px solid var(--var-light-grey-blue);
+                    border-radius: 5px;
+                    background-color: var(--var-light-blue);
+                    padding: 7px;
+                    width: fit-content;
+                    margin-left: 0;
+                }
+            }
+
+            &_plot {
+                @extend .seriesdetail_content_body_section;
+                margin: .6rem !important;
+            }
+
+            h2{
+                margin-top: 0;
+            }
+
+            img {
+                width: 45%;
+            }
+
+            p {
+                margin: .2rem;
+            }
+        }
+
+        &_body{
+            display: flex;
+            flex-direction: column;
+            padding: 8px;
+
+            &_section {
+                margin: .6rem 0;
+                overflow: hidden;
+
+                h3 {
+                font-weight: 500;
+               
+                margin: .4rem  0 .2rem;
+                }
+
+                p {
+                    font-size: 15px;
+                    color: var(--var-light-grey-text);
+                    margin: 0;
+                }
+            }
+        }
+
+        button {
+            background-color: var(--var-light-blue);
+            color: var(--var-white-text);
+            font-size: 18px;
+            border-radius: 5px;
+            border: none;
+            padding: .6rem;
+            height: 55px;
+            min-width: 275px;
+            width:100%;
+            max-width: 300px;
+
+            @media screen and (min-width: 1024px) {
+                height: 40px;
+                min-width: unset;
+                width: 255px;
+                align-self: flex-end;
+                margin-right: 1rem;
+            }
+        } 
+    }
+}
