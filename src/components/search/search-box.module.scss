@@ -1,0 +1,33 @@
+.searchbox{
+    display: flex;
+    width: 90%;
+    margin: auto;
+    padding: 2rem;
+    border-radius: 5px;
+    background-color: var(--var-light-grey-blue);
+
+    input {
+        width: 80%;
+        font-size: 16px;
+        border: none;
+        border-radius: 5px 0 0 5px;
+        height: 40px;
+        padding: 0 10px;
+
+        &:focus{
+            outline: none;
+        }
+    }
+
+    button {
+        cursor: pointer;
+        background-color: var(--var-body-background);
+        color: var(--var-white-text);
+        border-radius: 0 5px 5px 0;
+        border: none;
+        padding: .6rem;
+        height: 40px;
+        width:20%;
+        min-width: 60px;
+    } 
+}
