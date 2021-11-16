@@ -15,12 +15,18 @@ const Home = () => {
     totalItems: number;
   }>({ results: [], totalItems: 0 });
   const currentSearchTerm = useRef<string>('');
+  const abortFetch = useRef<AbortController>();
 
   const getSeriesList = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const searchTerm = (e.currentTarget.elements[0] as HTMLInputElement).value;
 
-    const serieslistResult = await ApiController.SeriesController.getSeriesList(searchTerm);
+    if (abortFetch.current) {
+      abortFetch.current.abort();
+    }
+    abortFetch.current = new AbortController();
+
+    const serieslistResult = await ApiController.SeriesController.getSeriesList(searchTerm, undefined, abortFetch.current.signal);
     if (serieslistResult.totalResults) {
       currentSearchTerm.current = searchTerm;
       setSeriesList({
