@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { SeriesListModel } from '../../../api-services/api-models/seriesModels';
 import ApiController from '../../../api-services/calls/apiController';
-import { SeriesCard } from '../../../components';
+import { LoadingSpinner, SeriesCard } from '../../../components';
 import classes from '../home.module.scss';
 import PaginationComponent from './PaginationComponent';
 
@@ -18,8 +18,14 @@ type SearchResultListProps = {
 };
 
 const SearchResultList = ({ totalItems, seriesList, setSeriesList, currentSearchTerm }: SearchResultListProps) => {
+  const abortFetch = useRef<AbortController>();
+
   const getUpdatedSeriesList = async (pageNumber: number) => {
-    const serieslistResult = await ApiController.SeriesController.getSeriesList(currentSearchTerm.current, pageNumber);
+    if (abortFetch.current) {
+      abortFetch.current.abort();
+    }
+    abortFetch.current = new AbortController();
+    const serieslistResult = await ApiController.SeriesController.getSeriesList(currentSearchTerm.current, pageNumber, abortFetch.current.signal);
 
     if (serieslistResult.totalResults) {
       setSeriesList((current) => ({ ...current, results: serieslistResult.Search }));
@@ -30,9 +36,7 @@ const SearchResultList = ({ totalItems, seriesList, setSeriesList, currentSearch
       <h2>Searchlist</h2>
       <p className={classes.count}>{`Total items: ${totalItems}`}</p>
       <div className={classes.home_content_list_body}>
-        {seriesList.map((series) => (
-          <SeriesCard key={series.imdbID} series={series} />
-        ))}
+        {seriesList.length ? seriesList.map((series) => <SeriesCard key={series.imdbID} series={series} />) : <LoadingSpinner />}
       </div>
       <PaginationComponent totalItems={totalItems} getSeriesList={getUpdatedSeriesList} />
     </div>
